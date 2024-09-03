@@ -1,15 +1,14 @@
+import 'package:callr/src/controllers/user_contact_controller.dart';
 import 'package:callr/src/views/screens/home_screen.dart';
-import 'package:callr/src/views/screens/input_screen.dart';
+import 'package:callr/src/views/screens/splash_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 /// Enum to define the routes in the app
 enum AppRoute {
   splashScreen,
-  inputScreen,
   homeScreen,
 }
-
 
 /// Extension on [AppRoute] to get the route path strings
 extension AppRouteX on AppRoute {
@@ -17,8 +16,6 @@ extension AppRouteX on AppRoute {
     switch (this) {
       case AppRoute.splashScreen:
         return '/splashScreen';
-      case AppRoute.inputScreen:
-        return '/inputScreen';
       case AppRoute.homeScreen:
         return '/homeScreen';
     }
@@ -27,12 +24,27 @@ extension AppRouteX on AppRoute {
 
 /// Provider for the [GoRouter] instance
 final appRouter = Provider<GoRouter>((ref) {
-  return GoRouter(initialLocation: AppRoute.inputScreen.routePath, routes: [
-    GoRoute(
-      name: AppRoute.inputScreen.name,
-      path: AppRoute.inputScreen.routePath,
-      builder: (context, state) =>  InputScreen(),
-    ),
-    GoRoute(name: AppRoute.homeScreen.name, path: AppRoute.homeScreen.routePath, builder: (context, state) => const HomeScreen()),
-  ]);
+  final userContact = ref.watch(userContactController);
+  return GoRouter(
+    initialLocation: AppRoute.splashScreen.routePath,
+    redirect: (context, state) {
+      if (userContact.isLoading){
+        return AppRoute.splashScreen.routePath;
+      } else {
+        return AppRoute.homeScreen.routePath;
+      }
+    },
+    routes: [
+      GoRoute(
+        name: AppRoute.splashScreen.name,
+        path: AppRoute.splashScreen.routePath,
+        builder: (context, state) => const SplashScreen(),
+      ),
+      GoRoute(
+        name: AppRoute.homeScreen.name,
+        path: AppRoute.homeScreen.routePath,
+        builder: (context, state) => const HomeScreen(),
+      ),
+    ],
+  );
 });

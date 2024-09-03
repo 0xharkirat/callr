@@ -2,7 +2,6 @@ import 'package:callr/src/core/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 void main() {
@@ -31,22 +30,4 @@ class MyApp extends ConsumerWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('CallR'),
-      ),
-      body: Center(
-        child: QrImageView(
-          data: '0478953783',
-          version: QrVersions.auto,
-          size: 200.0,
-        ),
-      ),
-    );
-  }
-}

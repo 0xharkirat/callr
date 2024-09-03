@@ -1,33 +1,29 @@
 class UserContact {
-
   final String name;
   final String phoneNumber;
-  final String? countryCode;
 
   UserContact({
     required this.name,
     required this.phoneNumber,
-    this.countryCode,
   });
 
   @override
   String toString() {
-    return 'UserContact(name: $name, phoneNumber: $phoneNumber, countryCode: $countryCode)';
+    return 'UserContact(name: $name, phoneNumber: $phoneNumber)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is UserContact &&
-      other.name == name &&
-      other.phoneNumber == phoneNumber &&
-      other.countryCode == countryCode;
+        other.name == name &&
+        other.phoneNumber == phoneNumber;
   }
 
   @override
   int get hashCode {
-    return name.hashCode ^ phoneNumber.hashCode ^ countryCode.hashCode;
+    return name.hashCode ^ phoneNumber.hashCode;
   }
 
   UserContact copyWith({
@@ -38,7 +34,6 @@ class UserContact {
     return UserContact(
       name: name ?? this.name,
       phoneNumber: phoneNumber ?? this.phoneNumber,
-      countryCode: countryCode ?? this.countryCode,
     );
   }
 
@@ -46,7 +41,6 @@ class UserContact {
     return {
       'name': name,
       'phoneNumber': phoneNumber,
-      'countryCode': countryCode,
     };
   }
 
@@ -54,7 +48,6 @@ class UserContact {
     return UserContact(
       name: map['name'],
       phoneNumber: map['phoneNumber'],
-      countryCode: map['countryCode'] ,
     );
   }
 }
