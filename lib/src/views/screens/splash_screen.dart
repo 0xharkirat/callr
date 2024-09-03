@@ -9,7 +9,7 @@ class SplashScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
           child: Column(
             children: [
               Expanded(
@@ -26,9 +26,11 @@ class SplashScreen extends StatelessWidget {
                       const SizedBox(height: 28),
                       ConstrainedBox(
                         constraints: BoxConstraints(
-                          maxWidth: MediaQuery.sizeOf(context).width * 0.6,
+                          maxWidth: MediaQuery.sizeOf(context).width * 0.5,
                         ),
-                        child: const ShadProgress(),
+                        child: const ShadProgress(
+                          minHeight: 3,
+                        ),
                       ),
                       const SizedBox(height: 28),
                       Text('Initializing...',
