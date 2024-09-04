@@ -25,17 +25,9 @@ class _ScannerDialogState extends ConsumerState<ScannerDialog> {
           const SizedBox(height: 16),
           if (code != null) ...[
             ShadButton.ghost(
-              icon: const Icon(Icons.copy),
+              icon: const Icon(Icons.copy, color: Colors.black,),
+              
               onPressed: () {
-               
-
-                ShadToaster.of(context).show(
-                  const ShadToast(
-                    description: Text('Long press to copy the number.'),
-                  ),
-                );
-              },
-              onLongPress: () {
                 // Copy the code to the clipboard
                 Clipboard.setData(ClipboardData(text: code!));
                 ShadToaster.of(context).show(
@@ -61,7 +53,7 @@ class _ScannerDialogState extends ConsumerState<ScannerDialog> {
                       throw Exception('Could not launch $url');
                     }
                   },
-                  icon: const Icon(Icons.phone),
+                  icon: const Icon(Icons.phone, color: Colors.black),
                   child: const Text('Open Caller'),
                 ),
                 ShadButton(
@@ -71,7 +63,7 @@ class _ScannerDialogState extends ConsumerState<ScannerDialog> {
                       throw Exception('Could not launch $url');
                     }
                   },
-                  icon: const Icon(Icons.sms),
+                  icon: const Icon(Icons.sms, color: Colors.black),
                   child: const Text('Open SMS'),
                 ),
               ],
@@ -79,7 +71,7 @@ class _ScannerDialogState extends ConsumerState<ScannerDialog> {
             const SizedBox(height: 16),
           ],
           ShadButton(
-            icon: const Icon(Icons.qr_code_scanner),
+            icon: const Icon(Icons.qr_code_scanner, color: Colors.black),
             onPressed: () {
               _qrBarCodeScannerDialogPlugin.getScannedQrBarCode(
                 context: context,

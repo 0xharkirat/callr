@@ -112,7 +112,7 @@ class HomeScreen extends ConsumerWidget {
                           applyIconColorFilter: true,
                           onPressed: () => openSideSheet(context),
                           backgroundColor: Colors.lightBlueAccent,
-                          icon: const Icon(Icons.qr_code),
+                          icon: const Icon(Icons.qr_code, color: Colors.black),
                           child: const Text(
                             'Create a QR Code',
                             style: TextStyle(fontSize: 16),
