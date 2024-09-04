@@ -1,11 +1,11 @@
 {
-    "name": "callr",
-    "short_name": "callr",
+    "name": "qallr",
+    "short_name": "qallr",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Qallr is a simple and easy way to share your contact information with others.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

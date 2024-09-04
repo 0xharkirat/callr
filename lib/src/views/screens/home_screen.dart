@@ -109,6 +109,7 @@ class HomeScreen extends ConsumerWidget {
                             textAlign: TextAlign.center),
                         const SizedBox(height: 24),
                         ShadButton(
+                          applyIconColorFilter: true,
                           onPressed: () => openSideSheet(context),
                           backgroundColor: Colors.lightBlueAccent,
                           icon: const Icon(Icons.qr_code),

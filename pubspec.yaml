@@ -41,9 +41,12 @@ dependencies:
   flutter_riverpod: ^2.5.1
   google_fonts: ^6.2.1
   shared_preferences: ^2.3.2
-  qr_bar_code_scanner_dialog: ^0.0.5
   url_launcher: ^6.3.0
   flutter_native_splash: ^2.4.1
+  qr_bar_code_scanner_dialog:
+    git:
+      url: https://github.com/0xharkirat/qr-bar-code-scanner-dialog.git
+      ref: master
   
 
 dev_dependencies:
