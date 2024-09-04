@@ -15,7 +15,7 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final goRouter = ref.watch(appRouter);
     return ShadApp.materialRouter(
-      title: 'CallR',
+      title: 'QallR',
       routerConfig: goRouter,
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.dark,

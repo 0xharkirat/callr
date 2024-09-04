@@ -17,7 +17,7 @@ class InputSideSheet extends ConsumerStatefulWidget {
 class _InputSideSheetState extends ConsumerState<InputSideSheet> {
   final GlobalKey<ShadFormState> formKey = GlobalKey<ShadFormState>();
 
-  bool get isFormValid => formKey.currentState?.validate() ?? false;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +29,7 @@ class _InputSideSheetState extends ConsumerState<InputSideSheet> {
             const Text("Enter your Info here. Click save to generate QR code."),
         actions: [
           ShadButton(
-            onPressed: isFormValid
-                ? () {
+            onPressed:  () {
                     if (formKey.currentState?.validate() ?? false) {
                       final name =
                           formKey.currentState!.fields['name']?.value ?? '';
@@ -52,7 +51,7 @@ class _InputSideSheetState extends ConsumerState<InputSideSheet> {
                       log('Validation failed');
                     }
                   }
-                : null,
+                ,
             child: const Text('Save changes'),
           ),
         ],
@@ -74,6 +73,8 @@ class _InputSideSheetState extends ConsumerState<InputSideSheet> {
                     Expanded(
                       flex: 5,
                       child: ShadInputFormField(
+                        autofocus: true,
+                        
                         id: 'name',
                         placeholder: const Text('Enter your name'),
                         initialValue: userContact?.name,
@@ -86,6 +87,9 @@ class _InputSideSheetState extends ConsumerState<InputSideSheet> {
                             return 'Name is required.';
                           }
                           return null;
+                        },
+                        onEditingComplete: () {
+                          formKey.currentState?.fields['phone']?.focus();
                         },
                       ),
                     ),

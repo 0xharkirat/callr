@@ -24,10 +24,11 @@ extension AppRouteX on AppRoute {
 
 /// Provider for the [GoRouter] instance
 final appRouter = Provider<GoRouter>((ref) {
-  final userContact = ref.watch(userContactController);
+ 
   return GoRouter(
     initialLocation: AppRoute.splashScreen.routePath,
     redirect: (context, state) {
+       final userContact = ref.watch(userContactController);
       if (userContact.isLoading){
         return AppRoute.splashScreen.routePath;
       } else {
