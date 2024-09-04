@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:qr_bar_code_scanner_dialog/qr_bar_code_scanner_dialog.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -13,8 +13,18 @@ class ScannerDialog extends ConsumerStatefulWidget {
 }
 
 class _ScannerDialogState extends ConsumerState<ScannerDialog> {
-  final _qrBarCodeScannerDialogPlugin = QrBarCodeScannerDialog();
+  
   String? code;
+
+  void _handleBarcode(BarcodeCapture barcodes) {
+    final barcode = barcodes.barcodes.firstOrNull;
+    if (barcode != null && mounted) {
+      setState(() {
+        code = barcode.displayValue;
+      });
+      Navigator.of(context).pop();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +35,7 @@ class _ScannerDialogState extends ConsumerState<ScannerDialog> {
           const SizedBox(height: 16),
           if (code != null) ...[
             ShadButton.ghost(
-              icon: const Icon(Icons.copy, color: Colors.black,),
-              
+              icon: const Icon(Icons.copy, color: Colors.black),
               onPressed: () {
                 // Copy the code to the clipboard
                 Clipboard.setData(ClipboardData(text: code!));
@@ -73,12 +82,18 @@ class _ScannerDialogState extends ConsumerState<ScannerDialog> {
           ShadButton(
             icon: const Icon(Icons.qr_code_scanner, color: Colors.black),
             onPressed: () {
-              _qrBarCodeScannerDialogPlugin.getScannedQrBarCode(
+              showDialog(
                 context: context,
-                onCode: (String? scannedCode) {
-                  setState(() {
-                    code = scannedCode;
-                  });
+                builder: (BuildContext context) {
+                  return Scaffold(
+                    appBar: AppBar(
+                      title: const Text('Scan QR Code'),
+                      backgroundColor: Colors.black,
+                    ),
+                    body: MobileScanner(
+                      onDetect: _handleBarcode,
+                    ),
+                  );
                 },
               );
             },

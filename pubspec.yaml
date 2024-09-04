@@ -47,6 +47,7 @@ dependencies:
     git:
       url: https://github.com/0xharkirat/qr-bar-code-scanner-dialog.git
       ref: master
+  mobile_scanner: ^5.2.1
   
 
 dev_dependencies:
